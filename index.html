@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<!-- saved from url=(0149)file:///C:/Users/gabri/Downloads/Cr%C3%ADtica%20da%20Faculdade%20de%20Julgar%20%C2%B7%20apresenta%C3%A7%C3%A3o%20preliminar%20%C2%B7%20ARCO_UFMG.html -->
+<html lang="pt-BR" data-darkreader-proxy-injected="true"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crítica da Faculdade de Julgar · apresentação preliminar · ARCO/UFMG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./Crítica da Faculdade de Julgar · apresentação preliminar · ARCO_UFMG_files/css2" rel="stylesheet">
+<style>
+:root {
+  --bg: #14110d;
+  --bg-elevated: #1c1814;
+  --bg-panel: #18140f;
+  --text: #f0e8d8;
+  --text-soft: rgba(240, 232, 216, 0.72);
+  --text-muted: rgba(240, 232, 216, 0.48);
+  --text-dim: rgba(240, 232, 216, 0.32);
+  --accent: #ee4a37;
+  --accent-deep: #d8412f;
+  --accent-soft: rgba(238, 74, 55, 0.14);
+  --line: rgba(240, 232, 216, 0.14);
+  --line-strong: rgba(240, 232, 216, 0.32);
+  --line-active: rgba(238, 74, 55, 0.55);
+  --font: 'DM Sans', system-ui, sans-serif;
+  --ease: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  width: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-feature-settings: 'ss01', 'cv11';
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* subtle paper grain — generated, very low opacity */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1, 0 0 0 0 0.92, 0 0 0 0 0.78, 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* warm vignette */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 65% 50% at 25% 30%, rgba(56, 30, 14, 0.35) 0%, transparent 65%),
+    radial-gradient(ellipse 70% 55% at 80% 80%, rgba(40, 22, 14, 0.4) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* MASTHEAD */
+.masthead {
+  position: fixed;
+  top: 2.4rem;
+  left: 3rem;
+  z-index: 20;
+  max-width: 420px;
+  animation: rise 0.9s var(--ease) 0.15s backwards;
+}
+.masthead .tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: lowercase;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 0.85rem;
+}
+.masthead .tag::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  display: block;
+}
+.masthead .title {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.15;
+  letter-spacing: -0.012em;
+  margin-bottom: 0.35rem;
+}
+.masthead .subtitle {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* STAGE */
+.stage {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* CONSTELLATION — pure transforms only */
+.constellation {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.7s var(--ease), opacity 0.7s var(--ease);
+  will-change: transform;
+}
+.stage.panel-open .constellation {
+  transform: translateX(-26%) scale(0.6);
+  opacity: 0.45;
+}
+
+.constellation-inner {
+  position: absolute;
+  inset: 16% 10%;
+}
+
+.lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+.lines path {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 0.5;
+  stroke-linecap: round;
+  transition: stroke 0.5s, stroke-width 0.5s;
+  vector-effect: non-scaling-stroke;
+  animation: draw 1.4s var(--ease) 0.6s backwards;
+}
+.lines path.active {
+  stroke: var(--line-active);
+  stroke-width: 1;
+}
+@keyframes draw {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.node {
+  position: absolute;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  width: 0;
+  height: 0;
+  color: inherit;
+  font-family: inherit;
+  animation: rise 0.7s var(--ease) backwards;
+}
+.node[data-id="1"] { animation-delay: 0.3s; }
+.node[data-id="2"] { animation-delay: 0.42s; }
+.node[data-id="3"] { animation-delay: 0.54s; }
+.node[data-id="4"] { animation-delay: 0.66s; }
+.node[data-id="5"] { animation-delay: 0.78s; }
+
+.node-dot {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: var(--text);
+  transition: background 0.35s, transform 0.35s;
+  z-index: 2;
+}
+.node-dot::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px solid rgba(240, 232, 216, 0.2);
+  transition: all 0.35s;
+}
+
+.node:hover .node-dot {
+  background: var(--accent);
+}
+.node:hover .node-dot::after {
+  inset: -9px;
+  border-color: rgba(238, 74, 55, 0.4);
+}
+
+.node.active .node-dot {
+  background: var(--accent);
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+/* ink-ring — hand-drawn nod to ARCO logo, only on active */
+.node-ring {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  transform: translate(-50%, -50%) rotate(0deg);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease), transform 0.6s var(--ease);
+  z-index: 1;
+  pointer-events: none;
+}
+.node.active .node-ring {
+  opacity: 0.85;
+  transform: translate(-50%, -50%) rotate(8deg);
+}
+.node-ring svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.node-ring path {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.1;
+  stroke-linecap: round;
+}
+.node-ring path.r2 { opacity: 0.55; stroke-width: 0.8; }
+.node-ring path.r3 { opacity: 0.35; stroke-width: 0.6; }
+
+.node-number {
+  position: absolute;
+  transform: translate(-50%, 22px);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: var(--text-dim);
+  white-space: nowrap;
+  transition: color 0.3s;
+  text-transform: lowercase;
+}
+.node:hover .node-number,
+.node.active .node-number { color: var(--accent); }
+
+.node-label {
+  position: absolute;
+  transform: translate(-50%, 44px);
+  font-size: 0.92rem;
+  color: var(--text-soft);
+  text-align: center;
+  width: 180px;
+  line-height: 1.3;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  transition: color 0.3s;
+}
+.node:hover .node-label,
+.node.active .node-label { color: var(--text); }
+
+/* PANEL */
+.panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 60%;
+  background: var(--bg-panel);
+  transform: translateX(100%);
+  transition: transform 0.7s var(--ease);
+  will-change: transform;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -20px 0 60px rgba(0, 0, 0, 0.3);
+}
+.panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1, 0 0 0 0 0.92, 0 0 0 0 0.78, 0 0 0 0.03 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.5;
+  pointer-events: none;
+}
+.stage.panel-open .panel { transform: translateX(0); }
+
+.panel-header {
+  position: relative;
+  padding: 2.8rem 4rem 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  border-bottom: 1px solid rgba(240, 232, 216, 0.06);
+  z-index: 2;
+}
+.panel-header .station-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  font-weight: 500;
+  text-transform: lowercase;
+}
+.panel-header .station-tag::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+.panel-controls {
+  display: flex;
+  gap: 0.4rem;
+}
+.panel-control {
+  background: none;
+  border: 1px solid rgba(240, 232, 216, 0.18);
+  color: var(--text-soft);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font);
+  font-size: 1rem;
+  font-weight: 400;
+  transition: all 0.22s;
+  padding: 0;
+  line-height: 1;
+}
+.panel-control:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.panel-control:disabled { opacity: 0.22; cursor: not-allowed; }
+
+.panel-content {
+  position: relative;
+  flex: 1;
+  overflow-y: auto;
+  padding: 2.4rem 4rem 4rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(240, 232, 216, 0.18) transparent;
+  transition: opacity 0.25s;
+  z-index: 2;
+}
+.panel-content::-webkit-scrollbar { width: 6px; }
+.panel-content::-webkit-scrollbar-thumb {
+  background: rgba(240, 232, 216, 0.16);
+  border-radius: 3px;
+}
+
+.panel-title {
+  font-size: 2.35rem;
+  font-weight: 600;
+  line-height: 1.08;
+  margin-bottom: 0.55rem;
+  color: var(--text);
+  letter-spacing: -0.022em;
+  max-width: 640px;
+}
+.panel-subtitle {
+  font-size: 1.08rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  margin-bottom: 2.4rem;
+  max-width: 560px;
+  line-height: 1.4;
+  letter-spacing: -0.005em;
+}
+
+.panel-body { max-width: 640px; }
+.panel-body p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-soft);
+  margin-bottom: 1.2rem;
+  font-weight: 400;
+}
+.panel-body p.lead {
+  font-size: 1.12rem;
+  color: var(--text);
+  margin-bottom: 1.7rem;
+  font-weight: 400;
+  line-height: 1.55;
+}
+.panel-body p:last-child { margin-bottom: 0; }
+.panel-body em { font-style: italic; color: var(--text); }
+.panel-body .key {
+  color: var(--accent);
+  font-weight: 600;
+}
+.panel-body h3 {
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: lowercase;
+  color: var(--accent);
+  font-weight: 600;
+  margin: 2.6rem 0 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.panel-body h3::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+/* timeline / numbered facts */
+.facts {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.85rem 1.8rem;
+  margin: 1.8rem 0;
+  padding: 1.6rem 0;
+  border-top: 1px solid rgba(240, 232, 216, 0.1);
+  border-bottom: 1px solid rgba(240, 232, 216, 0.1);
+}
+.facts .marker {
+  font-weight: 600;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.92rem;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  padding-top: 0.05rem;
+}
+.facts .desc {
+  color: var(--text-soft);
+  font-size: 0.96rem;
+  line-height: 1.55;
+}
+.facts .desc em { font-style: italic; color: var(--text); }
+
+blockquote {
+  font-size: 1.18rem;
+  line-height: 1.45;
+  color: var(--text);
+  margin: 1.8rem 0;
+  padding-left: 1.4rem;
+  border-left: 2px solid var(--accent);
+  max-width: 580px;
+  font-weight: 400;
+  font-style: italic;
+}
+blockquote cite {
+  display: block;
+  font-style: normal;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 0.7rem;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+  text-transform: lowercase;
+}
+blockquote em { font-style: italic; }
+
+.concept-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.1rem;
+  margin: 1.8rem 0;
+}
+.concept-card {
+  padding: 1.4rem 1.5rem;
+  border: 1px solid rgba(240, 232, 216, 0.12);
+  background: rgba(240, 232, 216, 0.015);
+  transition: border-color 0.25s, background 0.25s;
+}
+.concept-card:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.concept-card .c-name {
+  font-size: 1.2rem;
+  color: var(--text);
+  margin-bottom: 0.15rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.concept-card .c-german {
+  font-size: 0.74rem;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  text-transform: lowercase;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+.concept-card .c-desc {
+  font-size: 0.92rem;
+  color: var(--text-soft);
+  line-height: 1.55;
+}
+.concept-card .c-desc em { font-style: italic; color: var(--text); }
+
+.coda {
+  font-size: 1.12rem;
+  line-height: 1.55;
+  color: var(--text);
+  margin-top: 2rem;
+  padding-top: 1.8rem;
+  border-top: 1px solid var(--line-active);
+  font-weight: 400;
+}
+
+/* HINT + KEYBOARD */
+.hint {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 15;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  opacity: 1;
+  transition: opacity 0.6s;
+  pointer-events: none;
+  letter-spacing: 0.01em;
+  animation: rise 1s var(--ease) 1.4s backwards;
+}
+.has-interacted .hint { opacity: 0; }
+
+.keyboard-hints {
+  position: fixed;
+  bottom: 2rem;
+  right: 3rem;
+  z-index: 15;
+  display: flex;
+  gap: 1.4rem;
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  letter-spacing: 0.05em;
+  text-transform: lowercase;
+  animation: rise 1s var(--ease) 1.1s backwards;
+}
+.keyboard-hints span {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.keyboard-hints kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border: 1px solid rgba(240, 232, 216, 0.18);
+  border-radius: 3px;
+  font-family: var(--font);
+  font-size: 0.72rem;
+  color: var(--text-soft);
+  font-weight: 500;
+}
+
+/* FOOTER MARK */
+.footer-mark {
+  position: fixed;
+  bottom: 2rem;
+  left: 3rem;
+  z-index: 15;
+  font-size: 0.66rem;
+  color: var(--text-dim);
+  letter-spacing: 0.22em;
+  text-transform: lowercase;
+  font-weight: 500;
+  animation: rise 1s var(--ease) 1.3s backwards;
+}
+.footer-mark .red { color: var(--accent); }
+
+/* RESPONSIVE */
+@media (max-width: 1100px) {
+  .panel { width: 70%; }
+  .panel-header, .panel-content { padding-left: 2.4rem; padding-right: 2.4rem; }
+  .panel-title { font-size: 1.95rem; }
+  .concept-grid { grid-template-columns: 1fr; }
+  .stage.panel-open .constellation { transform: translateX(-32%) scale(0.5); }
+}
+
+@media (max-width: 900px) {
+  .panel { width: 100%; }
+  .stage.panel-open .constellation { opacity: 0; transform: scale(0.4); }
+  .masthead { left: 1.5rem; max-width: 260px; top: 1.6rem; }
+  .masthead .title { font-size: 1.1rem; }
+  .keyboard-hints, .footer-mark { display: none; }
+  .panel-header, .panel-content { padding-left: 1.8rem; padding-right: 1.8rem; }
+  .panel-title { font-size: 1.6rem; }
+}
+
+@media print {
+  body { background: white; color: black; }
+  .panel { transform: none; position: static; width: 100%; box-shadow: none; }
+  .constellation, .keyboard-hints, .hint, .footer-mark { display: none; }
+}
+</style>
+</head>
+<body class="has-interacted">
+
+<header class="masthead">
+  <div class="tag">Tempestade &amp; Ímpeto: Um percurso entre filosofia e poesia romântica (ARCO/UFMG)</div>
+  <div class="title">Encontro 1: Crítica da Faculdade de Julgar - Immanuel Kant (1970)</div>
+  <div class="subtitle">Apresentação: <b><a href="https://www.instagram.com/bhrngg/" target="_blank" style="text-decoration: none; color: inherit;">Gabriel R. Bhering (UFMG)</a></b></div>
+</header>
+
+<div class="stage" id="stage">
+  <div class="constellation">
+    <div class="constellation-inner">
+      <svg class="lines" id="lines" preserveAspectRatio="none" viewBox="0 0 100 100"><path d="M 10 38 Q 24 26 32 20" data-from="1" data-to="2"></path><path d="M 32 20 Q 39 40 52 54" data-from="2" data-to="3"></path><path d="M 52 54 Q 65 37 72 26" data-from="3" data-to="4"></path><path d="M 72 26 Q 78 46 90 60" data-from="4" data-to="5"></path></svg>
+
+      <button class="node" data-id="1" style="left: 10%; top: 38%;" aria-label="Estação 1: Königsberg">
+        <span class="node-ring" aria-hidden="true">
+          <svg viewBox="-30 -30 60 60">
+            <path d="M 0,-22 C 13,-22 22,-13 22,0 C 22,12 11,22 0,22 C -12,22 -22,11 -22,0 C -22,-12 -11,-22 0,-22 Z"></path>
+            <path class="r2" d="M -1,-21 C 12,-23 23,-11 21,1 C 23,14 10,23 -1,21 C -14,23 -23,10 -21,-1 C -23,-14 -10,-23 -1,-21 Z"></path>
+            <path class="r3" d="M 2,-20 C 14,-19 20,-9 19,2 C 20,15 8,21 -3,19 C -16,20 -20,8 -19,-3 C -20,-16 -8,-21 2,-20 Z"></path>
+          </svg>
+        </span>
+        <span class="node-dot"></span>
+        <span class="node-number">01</span>
+        <span class="node-label">Königsberg, 1724 a 1804</span>
+      </button>
+
+      <button class="node" data-id="2" style="left: 32%; top: 20%;" aria-label="Estação 2: os despertadores">
+        <span class="node-ring" aria-hidden="true">
+          <svg viewBox="-30 -30 60 60">
+            <path d="M 0,-22 C 13,-22 22,-13 22,0 C 22,12 11,22 0,22 C -12,22 -22,11 -22,0 C -22,-12 -11,-22 0,-22 Z"></path>
+            <path class="r2" d="M -1,-21 C 12,-23 23,-11 21,1 C 23,14 10,23 -1,21 C -14,23 -23,10 -21,-1 C -23,-14 -10,-23 -1,-21 Z"></path>
+            <path class="r3" d="M 2,-20 C 14,-19 20,-9 19,2 C 20,15 8,21 -3,19 C -16,20 -20,8 -19,-3 C -20,-16 -8,-21 2,-20 Z"></path>
+          </svg>
+        </span>
+        <span class="node-dot"></span>
+        <span class="node-number">02</span>
+        <span class="node-label">Hume, Rousseau, Newton</span>
+      </button>
+
+      <button class="node" data-id="3" style="left: 52%; top: 54%;" aria-label="Estação 3: a virada crítica">
+        <span class="node-ring" aria-hidden="true">
+          <svg viewBox="-30 -30 60 60">
+            <path d="M 0,-22 C 13,-22 22,-13 22,0 C 22,12 11,22 0,22 C -12,22 -22,11 -22,0 C -22,-12 -11,-22 0,-22 Z"></path>
+            <path class="r2" d="M -1,-21 C 12,-23 23,-11 21,1 C 23,14 10,23 -1,21 C -14,23 -23,10 -21,-1 C -23,-14 -10,-23 -1,-21 Z"></path>
+            <path class="r3" d="M 2,-20 C 14,-19 20,-9 19,2 C 20,15 8,21 -3,19 C -16,20 -20,8 -19,-3 C -20,-16 -8,-21 2,-20 Z"></path>
+          </svg>
+        </span>
+        <span class="node-dot"></span>
+        <span class="node-number">03</span>
+        <span class="node-label">O Projeto Crítico</span>
+      </button>
+
+      <button class="node" data-id="4" style="left: 72%; top: 26%;" aria-label="Estação 4: a unidade da filosofia">
+        <span class="node-ring" aria-hidden="true">
+          <svg viewBox="-30 -30 60 60">
+            <path d="M 0,-22 C 13,-22 22,-13 22,0 C 22,12 11,22 0,22 C -12,22 -22,11 -22,0 C -22,-12 -11,-22 0,-22 Z"></path>
+            <path class="r2" d="M -1,-21 C 12,-23 23,-11 21,1 C 23,14 10,23 -1,21 C -14,23 -23,10 -21,-1 C -23,-14 -10,-23 -1,-21 Z"></path>
+            <path class="r3" d="M 2,-20 C 14,-19 20,-9 19,2 C 20,15 8,21 -3,19 C -16,20 -20,8 -19,-3 C -20,-16 -8,-21 2,-20 Z"></path>
+          </svg>
+        </span>
+        <span class="node-dot"></span>
+        <span class="node-number">04</span>
+        <span class="node-label">A Unidade da Filosofia</span>
+      </button>
+
+      <button class="node" data-id="5" style="left: 90%; top: 60%;" aria-label="Estação 5: conceitos inaugurais">
+        <span class="node-ring" aria-hidden="true">
+          <svg viewBox="-30 -30 60 60">
+            <path d="M 0,-22 C 13,-22 22,-13 22,0 C 22,12 11,22 0,22 C -12,22 -22,11 -22,0 C -22,-12 -11,-22 0,-22 Z"></path>
+            <path class="r2" d="M -1,-21 C 12,-23 23,-11 21,1 C 23,14 10,23 -1,21 C -14,23 -23,10 -21,-1 C -23,-14 -10,-23 -1,-21 Z"></path>
+            <path class="r3" d="M 2,-20 C 14,-19 20,-9 19,2 C 20,15 8,21 -3,19 C -16,20 -20,8 -19,-3 C -20,-16 -8,-21 2,-20 Z"></path>
+          </svg>
+        </span>
+        <span class="node-dot"></span>
+        <span class="node-number">05</span>
+        <span class="node-label">Conceitos-Chave</span>
+      </button>
+    </div>
+  </div>
+
+  <aside class="panel" id="panel" aria-hidden="true">
+    <header class="panel-header">
+      <div class="station-tag" id="panel-tag">estação 05</div>
+      <div class="panel-controls">
+        <button class="panel-control" id="prev" aria-label="estação anterior">‹</button>
+        <button class="panel-control" id="next" aria-label="próxima estação" disabled="">›</button>
+        <button class="panel-control" id="close" aria-label="fechar e voltar ao mapa">×</button>
+      </div>
+    </header>
+    <div class="panel-content" id="panel-content" style="opacity: 1;">
+    <h2 class="panel-title">Conceitos inaugurais</h2>
+    <p class="panel-subtitle">vocabulário operativo da Crítica da Faculdade de Julgar Estética</p>
+    <div class="panel-body">
+      <p class="lead">O que se inicia agora, com o professor Leandro, é a leitura técnica da primeira parte da Terceira Crítica. Quatro conceitos articulam essa leitura. Não são definições isoladas, mas um circuito interconectado: o juízo estético acontece no <em>ânimo</em>, fundado num <em>sentimento de vida</em> que afeta as faculdades, e desemboca tanto no <em>belo</em> quanto no <em>sublime</em>.</p>
+      <div class="concept-grid">
+        <div class="concept-card">
+          <div class="c-name">Sentimento de vida</div>
+          <div class="c-german">lebensgefühl</div>
+          <div class="c-desc">Conceito introduzido por Kant logo no §1 da Crítica da Faculdade de Julgar Estética. O juízo estético, diz ele, não se refere ao objeto pelo entendimento (com vistas ao conhecimento), mas pela imaginação ao sujeito e ao seu <em>sentimento de vida</em>. Não é sensação particular nem desejo: é um sentimento do sujeito sobre si mesmo, sobre a vivacidade de suas próprias faculdades em jogo. Funda subjetivamente o juízo estético.</div>
+        </div>
+        <div class="concept-card">
+          <div class="c-name">Ânimo</div>
+          <div class="c-german">gemüt</div>
+          <div class="c-desc">Conjunto das faculdades do sujeito enquanto vida interior. Não se reduz à consciência teórica nem à vontade prática: é o campo onde imaginação e entendimento se relacionam livremente, sem que um conceito determinado feche essa relação. Esse <em>jogo livre</em> (freies Spiel) das faculdades, característico da experiência do belo, é sentido como prazer. O ânimo é o palco interno onde a experiência estética acontece.</div>
+        </div>
+        <div class="concept-card">
+          <div class="c-name">Juízo</div>
+          <div class="c-german">urteilskraft</div>
+          <div class="c-desc">A faculdade que pensa o particular sob o universal. No uso reflexionante (não determinante), opera sem conceito prévio: dado um particular, busca-se o universal que o pensa. O juízo estético é o caso paradigmático. Ao dizer "esta rosa é bela", não aplicamos um conceito; pretendemos, no entanto, <em>validade subjetiva universal</em>: que todos deveriam concordar, sem que se possa forçá-los por argumento.</div>
+        </div>
+        <div class="concept-card">
+          <div class="c-name">Sublime</div>
+          <div class="c-german">das erhabene</div>
+          <div class="c-desc">Variante mais complexa da experiência estética. Diante do absolutamente grande (sublime <em>matemático</em>) ou do absolutamente poderoso (sublime <em>dinâmico</em>), a imaginação falha em apreender ou em conter o objeto. Mas dessa falha emerge a consciência de uma faculdade superior em nós, a razão, que pensa o que a imaginação não pode apresentar. O prazer do sublime é misto: contém o doloroso reconhecimento dos limites sensíveis, e a elevação do sujeito enquanto ser supra-sensível.</div>
+        </div>
+      </div>
+      <p class="coda">A conexão entre os quatro conceitos é o que dá unidade à investigação. O sentimento de vida funda a experiência estética; o ânimo é o lugar onde ela se dá; o juízo reflexionante é o seu modo de operação; o belo e o sublime são as suas duas figuras maiores. No sublime, sobretudo, anuncia-se, no próprio coração da experiência estética, a vocação supra-sensível do sujeito: o ponto em que estética e moral se tocam.</p>
+    </div>
+  </div>
+  </aside>
+</div>
+
+<div class="hint">clique em uma estação para começar</div>
+
+<div class="footer-mark">
+  <span class="red">●</span><a href="https://www.arcoufmg.com/" target="_blank" style="text-decoration: none; color: inherit;">arco · arte, crítica e pensamento contemporâneo</a></div>
+
+<div class="keyboard-hints">
+  <span><kbd>←</kbd><kbd>→</kbd> navegar</span>
+  <span><kbd>1</kbd>–<kbd>5</kbd> ir direto</span>
+  <span><kbd>esc</kbd> mapa</span>
+</div>
+
+<script>
+const STATIONS = [
+  {
+    id: 1,
+    title: 'Königsberg, 1724 a 1804',
+    subtitle: 'formação intelectual e raízes do projeto crítico',
+    body: `
+      <p class="lead">Kant nasce em 1724 em Königsberg, capital da Prússia oriental, hoje Kaliningrado, e morre na mesma cidade em 1804. O homem que reorganizou a filosofia moderna jamais saiu dos arredores dessa cidade portuária do Báltico. Os contornos de sua biografia importam menos do que três formações que se entrelaçam em sua educação intelectual, e que voltarão, transformadas, nas três Críticas.</p>
+      <p>A primeira é o <span class="key">pietismo luterano</span>. Pais devotos, e em seguida o rigoroso Collegium Fridericianum: tradição religiosa centrada não na ortodoxia doutrinária, mas na vida moral interior, na consciência, na seriedade do dever. Kant abandona a prática religiosa adulta, mas a fisionomia ética do pietismo (a dignidade da consciência, a autonomia da vontade frente a qualquer autoridade externa) permanece como matriz da filosofia prática que ele desenvolverá quarenta anos depois.</p>
+      <p>A segunda é o <span class="key">racionalismo wolffiano</span>. Na Universidade de Königsberg, desde 1740, Kant estuda no contexto da filosofia oficial alemã: a síntese de Leibniz e Wolff, sistema metafísico ambicioso que se via como conclusão definitiva da filosofia. Quem o introduz, e sobretudo quem o introduz à matemática e à física, é Martin Knutzen, professor que combinava o wolffianismo com interesse pela ciência newtoniana. A combinação é decisiva.</p>
+      <p>A terceira é o <span class="key">paradigma newtoniano</span>. A física de Newton é, para o século XVIII, o modelo do que um conhecimento rigoroso pode ser. Kant publica, jovem, a <em>Allgemeine Naturgeschichte und Theorie des Himmels</em> (1755), em que aplica princípios newtonianos à cosmologia. O que ele aprende com Newton não é apenas física, mas uma noção de necessidade legislativa, de leis universais e necessárias, que reaparecerá como tarefa filosófica na Primeira Crítica.</p>
+      <div class="facts">
+        <span class="marker">1724</span><span class="desc">Nasce em Königsberg, filho de pais luteranos pietistas.</span>
+        <span class="marker">1740</span><span class="desc">Ingressa na Universidade de Königsberg; formação inicial em teologia, gradualmente redirecionada pela física newtoniana.</span>
+        <span class="marker">1746 / 55</span><span class="desc">Por dificuldades financeiras, trabalha como preceptor (<em>Hauslehrer</em>) em famílias rurais. Nove anos de leitura sistemática.</span>
+        <span class="marker">1755</span><span class="desc">Defende a habilitação. Início da carreira como <em>Privatdozent</em>, função que ocupará por quinze anos.</span>
+        <span class="marker">1770</span><span class="desc">Aos 46 anos, recebe enfim a cátedra de Lógica e Metafísica.</span>
+        <span class="marker">1781</span><span class="desc">Publica a <em>Crítica da Razão Pura</em>. Começa o período crítico.</span>
+        <span class="marker">1804</span><span class="desc">Morre em Königsberg, intelectualmente ativo até os últimos anos.</span>
+      </div>
+      <p>Vale notar, por fim, que o interesse pela estética não é tardio em Kant. Já em 1764, ainda no chamado período pré-crítico, publica as <em>Observações sobre o Sentimento do Belo e do Sublime</em>, ensaio em registro mais antropológico e empírico do que filosófico-transcendental. A questão estética acompanha Kant, portanto, vinte e seis anos antes da Terceira Crítica. O que muda em 1790 não é o interesse no fenômeno, mas a moldura conceitual em que ele será tratado.</p>
+    `
+  },
+  {
+    id: 2,
+    title: 'Os despertadores: Hume, Rousseau, Newton',
+    subtitle: 'três crises convergem sobre o sistema racionalista',
+    body: `
+      <p class="lead">A filosofia oficial alemã que Kant herda é leibniz-wolffiana: sistema racionalista que pretende conhecer o real por análise conceitual, <em>a priori</em>, sem necessitar essencialmente da experiência sensível. Três correntes externas a essa tradição tornam, ao longo dos anos 1760, esse sistema progressivamente insustentável para Kant. Não se trata de uma simples sucessão de leituras, mas da convergência de três crises sobre um mesmo ponto.</p>
+      <p>A primeira crise vem de <span class="key">Hume</span>. Em <em>An Enquiry Concerning Human Understanding</em> (1748), Hume submete à crítica empirista os conceitos centrais da metafísica tradicional: causalidade, substância, identidade pessoal. Seu argumento sobre a causalidade é o mais devastador. Quando observamos uma bola atingir outra e esta se mover, dizemos que a primeira <em>causa</em> o movimento da segunda. Mas o que observamos efetivamente? Apenas a sucessão regular dos dois eventos, e nada mais. A necessidade que ligamos a essa sequência não está no mundo: está em nós. É hábito, não percepção.</p>
+      <p>A consequência é radical. Se a causalidade não é dado da experiência nem verdade racional, todo o edifício da metafísica, que sempre operou com inferências causais sobre Deus, alma e mundo, fica sem fundamento. Kant reconhece, nos <em>Prolegômenos</em> (1783), o impacto dessa leitura.</p>
+      <blockquote>
+        "Hume foi quem primeiro interrompeu meu sono dogmático, e deu às minhas investigações em filosofia especulativa uma direção inteiramente nova."
+        <cite>Kant, <em>Prolegômenos a toda metafísica futura</em></cite>
+      </blockquote>
+      <p>A resposta de Kant não será aceitar o ceticismo nem retornar ao dogmatismo. Será uma terceira via. E se a necessidade da causalidade, ausente do mundo empírico, fosse uma contribuição estrutural da própria mente que conhece? Se as categorias (causalidade, substância, e outras) fossem condições <em>a priori</em> sob as quais qualquer experiência possível se organiza? Essa hipótese, esboçada de forma frágil nos anos 1760, será a chave da <em>Crítica da Razão Pura</em>.</p>
+      <p>A segunda crise vem de <span class="key">Rousseau</span>. Suas obras principais (<em>Discurso sobre a desigualdade</em>, 1755; <em>Émile</em>, 1762; <em>Contrato Social</em>, 1762) atingem Kant não pela epistemologia, mas pela ética. Rousseau acusa a razão instrumental e institucionalizada da civilização europeia de corromper o que há de melhor no humano: a virtude natural, a consciência, a liberdade. Mas seu gesto não é anti-racionalista. No lugar da razão calculadora, Rousseau eleva uma razão prática que tem por princípio a <em>autonomia</em>: a capacidade do sujeito de se dar a si mesmo a sua própria lei.</p>
+      <p>Para Kant, essa é uma reorganização decisiva. O centro de gravidade da filosofia se desloca da epistemologia para a moral. A dignidade pertence a todo ser racional pela sua capacidade de agir segundo princípios autônomos, e não pela sua erudição ou posição social. Esse princípio reaparece, formalizado, no imperativo categórico da <em>Fundamentação da Metafísica dos Costumes</em> (1785) e da <em>Crítica da Razão Prática</em> (1788).</p>
+      <p>A terceira crise é, em certo sentido, silenciosa: o sucesso continuado da física <span class="key">newtoniana</span>. Se a natureza é, como descreve Newton, um sistema de causas mecânicas conectadas por leis universais e necessárias, então cada evento do mundo natural está determinado pelo anterior. Mas os seres humanos são, em alguma medida, seres naturais. Como, dentro desse sistema causalmente fechado, alocar a liberdade que a moral exige? Como uma vontade autônoma pode produzir efeitos no mundo regido por causalidade mecânica? Esse é, em síntese, o problema do livre-arbítrio no horizonte iluminista.</p>
+      <p>Três vetores, portanto, convergem nos anos 1760 sobre a questão que dará forma ao projeto crítico. Pela leitura de Hume, o limite e a fundamentação da metafísica. Pela leitura de Rousseau, a primazia e a autonomia da razão prática. Pela vigência de Newton, o problema da liberdade dentro de uma natureza determinada. Reorganizar essas três frentes num único sistema filosófico exigirá um gesto inteiramente novo, que Kant ensaiará pela primeira vez em 1770.</p>
+    `
+  },
+  {
+    id: 3,
+    title: 'A virada de 1770 e o período crítico',
+    subtitle: 'da Dissertação Inaugural ao sistema das três Críticas',
+    body: `
+      <p class="lead">Em 1770, ao tomar posse da cátedra de Lógica e Metafísica, Kant publica a chamada Dissertação Inaugural, intitulada <em>De mundi sensibilis atque intelligibilis forma et principiis</em> (Sobre a forma e os princípios do mundo sensível e do mundo inteligível). É nesse breve texto, em latim, que se anuncia pela primeira vez o que Kant chamará depois de sua "revolução copernicana".</p>
+      <p>Três teses concentram, na Dissertação, o núcleo do que estará por vir. Primeiro: <span class="key">sensibilidade</span> e <span class="key">entendimento</span> são duas fontes de conhecimento irredutíveis uma à outra. A sensibilidade nos dá objetos no espaço e no tempo; o entendimento opera com conceitos. Nenhuma das duas é redutível à outra, contra a tradição leibniziana, que via na sensibilidade apenas um modo confuso do entendimento. Segundo: espaço e tempo não são propriedades das coisas, nem relações entre elas, mas <em>formas</em> da nossa sensibilidade, modos <em>a priori</em> sob os quais qualquer objeto pode nos aparecer. Terceiro, como consequência: conhecemos apenas <em>fenômenos</em>, jamais coisas em si. O mundo, tal como aparece, é estruturado pelas nossas formas de intuição.</p>
+      <p>Seguem-se onze anos em que Kant publica muito pouco. Cartas a Marcus Herz e a outros correspondentes mostram um filósofo concentrado num problema central: como justificar a aplicação de conceitos <em>a priori</em> (as categorias) a objetos da experiência? Por que esses conceitos, que parecem ser estruturas internas da mente, valeriam para um mundo que está, em algum sentido, fora dela? Esse problema, que Kant chamará "dedução transcendental das categorias", é o que ocupa o silêncio da década de 1770.</p>
+      <p>Em 1781 aparece a <em>Crítica da Razão Pura</em>, cuja primeira recepção é morna, em parte por sua dificuldade técnica. Kant escreve uma reformulação parcial em 1787 (segunda edição) e publica, em 1783, os <em>Prolegômenos</em>, para esclarecer o argumento. O que está em jogo na Primeira Crítica pode ser dito de forma simples, embora suas consequências sejam vastas. Até Kant, a filosofia teórica supunha que o conhecimento se rege pela conformidade da mente aos objetos: conhecer é apreender o real tal como ele é em si. Kant inverte essa relação. Os objetos do conhecimento, enquanto fenômenos, conformam-se à estrutura cognitiva do sujeito. O que torna a experiência possível são as formas <em>a priori</em> da sensibilidade (espaço, tempo) e os conceitos <em>a priori</em> do entendimento (as doze categorias). É a essa inversão que Kant chama de <span class="key">revolução copernicana</span>.</p>
+      <p>A consequência metodológica é o que Kant chama filosofia <span class="key">transcendental</span>. Não se trata de descrever objetos do mundo, mas de descrever as condições sob as quais o conhecimento de objetos é possível. A pergunta central da Primeira Crítica não é "o que existe", mas "como podem objetos da experiência ser conhecidos <em>a priori</em>". A metafísica é salva como crítica, e perdida como ontologia substancial.</p>
+      <p>A <em>Crítica da Razão Prática</em> (1788) realiza o mesmo gesto, deslocado da faculdade de conhecer para a faculdade de apetição. A pergunta não é mais "como conheço", mas "como devo agir". É aqui que Kant articula, no quadro de sua filosofia crítica, o que herdara de Rousseau. A razão prática, em sua função pura, dá-se a si mesma uma lei: o imperativo categórico. A liberdade não é um dado empírico (não pode sê-lo, pois a natureza empírica é causalmente determinada), mas um <em>postulado</em> da razão prática. Somos livres porque devemos sê-lo: sem liberdade, a moralidade não tem sentido.</p>
+      <div class="facts">
+        <span class="marker">1770</span><span class="desc"><em>Dissertação Inaugural</em>: as três teses fundadoras.</span>
+        <span class="marker">1781</span><span class="desc"><em>Crítica da Razão Pura</em>; segunda edição, profundamente revista, em 1787.</span>
+        <span class="marker">1783</span><span class="desc"><em>Prolegômenos a toda metafísica futura</em>.</span>
+        <span class="marker">1785</span><span class="desc"><em>Fundamentação da Metafísica dos Costumes</em>.</span>
+        <span class="marker">1788</span><span class="desc"><em>Crítica da Razão Prática</em>.</span>
+        <span class="marker">1790</span><span class="desc"><em>Crítica da Faculdade de Julgar</em>.</span>
+      </div>
+      <p>Está montado, com a Segunda Crítica, um sistema com duas alas. A natureza, regida pelas leis do entendimento, é o domínio da Primeira Crítica. A liberdade, regida pela lei da razão prática, é o domínio da Segunda. Resta perguntar se essas duas alas formam, de fato, um único edifício, ou se permanecem domínios separados sem comunicação possível. A Terceira Crítica é a tentativa de resposta a essa pergunta.</p>
+    `
+  },
+  {
+    id: 4,
+    title: 'A unidade da filosofia',
+    subtitle: 'o juízo como elo mediador entre natureza e liberdade',
+    body: `
+      <p class="lead">A <em>Crítica da Faculdade de Julgar</em> é publicada em 1790, dois anos após a <em>Crítica da Razão Prática</em>. Kant a concebe não como apêndice das duas anteriores, mas como o coroamento do sistema crítico, a peça que dá unidade ao que sem ela permaneceria cindido. A noção de unidade, em Kant, não é mero ideal retórico. Em suas aulas de Lógica, ele ensinava que toda a filosofia se reduz a quatro perguntas (que posso saber, que devo fazer, que me é permitido esperar, que é o homem) e que uma filosofia só é satisfatória se mostra como tais perguntas se articulam num único sistema. Para entender o que essa unidade significa concretamente no projeto crítico, é preciso reconstruir três passos.</p>
+
+      <h3>o abismo</h3>
+      <p>O primeiro passo é diagnosticar a cisão. A Primeira Crítica estabelece que o mundo dos fenômenos é causalmente determinado: tudo o que acontece, na natureza, acontece segundo leis necessárias. A Segunda Crítica, por sua vez, exige que existam ações livres, pois sem liberdade não há moralidade. Mas a ação moral, qualquer que seja sua origem, produz efeitos no mundo natural: mover um corpo, ajudar outro ser humano, modificar uma situação. Como pode uma ação livre, originada num domínio que escapa à causalidade natural, ter efeito num domínio inteiramente determinado por ela? Kant fala de um "abismo intransponível" (<em>unübersehbare Kluft</em>) entre o sensível e o supra-sensível.</p>
+      <p>O problema, em outros termos: filosofia teórica e filosofia prática têm objetos distintos (natureza, liberdade), mas operam sobre o <em>mesmo território</em>, o do mundo sensível. Se cada uma legisla seu domínio sem que haja qualquer princípio mediador entre elas, o sistema filosófico se fragmenta. A unidade da filosofia, que para Kant é exigência interna do projeto crítico, depende de encontrar esse princípio.</p>
+
+      <h3>o juízo como faculdade</h3>
+      <p>O segundo passo é identificar onde poderia estar esse princípio. Kant inventaria as faculdades superiores da mente em três: faculdade de conhecer (<em>Erkenntnisvermögen</em>), faculdade de apetição (<em>Begehrungsvermögen</em>), faculdade de sentir prazer e desprazer (<em>Gefühl der Lust und Unlust</em>). A primeira é legislada pelo entendimento e tem por domínio a natureza. A segunda é legislada pela razão e tem por domínio a liberdade. A terceira, até então sem legislador próprio na arquitetura crítica, é precisamente o que será investigado pela Terceira Crítica.</p>
+      <p>A faculdade que opera sobre o sentimento de prazer é o <span class="key">juízo</span> (<em>Urteilskraft</em>). Mas é preciso fazer aqui uma distinção decisiva. Há dois usos do juízo. O <span class="key">juízo determinante</span> (<em>bestimmende Urteilskraft</em>) parte de uma regra universal já dada (um conceito, uma lei) e subsume sob ela um caso particular. É como o entendimento opera na Primeira Crítica: "esta substância obedece à lei da causalidade". Mas há outro uso, mais delicado. O <span class="key">juízo reflexionante</span> (<em>reflektierende Urteilskraft</em>) parte do particular e busca o universal que o pensa. Não dispõe, de antemão, do conceito.</p>
+      <p>A Terceira Crítica investiga esse segundo uso do juízo. E descobre que ele tem um princípio <em>a priori</em> próprio: a <span class="key">finalidade</span> (<em>Zweckmäßigkeit</em>). Quando o juízo reflexionante busca o universal a partir de um particular sem dispor de conceito, opera sob a suposição de que o particular se deixa pensar como se fosse organizado segundo um fim. Não se afirma que ele <em>é</em> organizado para um fim (isso seria conhecimento dogmático): opera-se como se fosse. A finalidade é princípio <em>subjetivo</em> e <em>regulativo</em>, não objetivo e constitutivo.</p>
+
+      <h3>as duas alas da terceira crítica</h3>
+      <p>O terceiro passo é ver como essa estrutura sustenta as duas partes da Terceira Crítica. A primeira parte, <em>Crítica da Faculdade de Julgar Estética</em>, investiga aquele uso reflexionante do juízo em que um objeto da experiência produz, no sujeito, um sentimento de prazer ligado à harmonia das faculdades, sem que se aplique a esse objeto qualquer conceito determinado. É o juízo de gosto (<em>Geschmacksurteil</em>), tema do <em>belo</em> e do <em>sublime</em>. A segunda parte, <em>Crítica da Faculdade de Julgar Teleológica</em>, investiga aquele uso reflexionante em que pensamos um ser natural (um organismo, um sistema da natureza) como se ele estivesse organizado para um fim, sem que possamos afirmá-lo objetivamente.</p>
+      <p>A unificação que a Terceira Crítica realiza pode então ser formulada com precisão. Pelo juízo estético, o sujeito experimenta no sentimento uma harmonia entre a sensibilidade, que percebe um objeto natural, e o entendimento, que tenta apreendê-lo: harmonia que não é cognitiva, mas que sugere uma afinidade entre a estrutura do sujeito e a estrutura do mundo. Pelo juízo teleológico, o sujeito é levado a pensar a natureza como se essa mesma natureza fosse compatível com a realização de fins, inclusive o fim último que a moral exige. Em ambos os casos, sem produzir conhecimento dogmático, o juízo abre a natureza a uma leitura compatível com a liberdade.</p>
+      <p>É nesse sentido específico, técnico, que a Terceira Crítica é o coroamento do sistema crítico. Não porque resolva os problemas das outras duas, mas porque articula entre elas uma passagem possível. E é também por isso que a estética kantiana não é uma teoria localizada do gosto: é o lugar onde a arquitetura inteira da filosofia crítica encontra o seu ponto de articulação.</p>
+    `
+  },
+  {
+    id: 5,
+    title: 'Conceitos inaugurais',
+    subtitle: 'vocabulário operativo da Crítica da Faculdade de Julgar Estética',
+    body: `
+      <p class="lead">O que se inicia agora, com o professor Leandro, é a leitura técnica da primeira parte da Terceira Crítica. Quatro conceitos articulam essa leitura. Não são definições isoladas, mas um circuito interconectado: o juízo estético acontece no <em>ânimo</em>, fundado num <em>sentimento de vida</em> que afeta as faculdades, e desemboca tanto no <em>belo</em> quanto no <em>sublime</em>.</p>
+      <div class="concept-grid">
+        <div class="concept-card">
+          <div class="c-name">Sentimento de vida</div>
+          <div class="c-german">lebensgefühl</div>
+          <div class="c-desc">Conceito introduzido por Kant logo no §1 da Crítica da Faculdade de Julgar Estética. O juízo estético, diz ele, não se refere ao objeto pelo entendimento (com vistas ao conhecimento), mas pela imaginação ao sujeito e ao seu <em>sentimento de vida</em>. Não é sensação particular nem desejo: é um sentimento do sujeito sobre si mesmo, sobre a vivacidade de suas próprias faculdades em jogo. Funda subjetivamente o juízo estético.</div>
+        </div>
+        <div class="concept-card">
+          <div class="c-name">Ânimo</div>
+          <div class="c-german">gemüt</div>
+          <div class="c-desc">Conjunto das faculdades do sujeito enquanto vida interior. Não se reduz à consciência teórica nem à vontade prática: é o campo onde imaginação e entendimento se relacionam livremente, sem que um conceito determinado feche essa relação. Esse <em>jogo livre</em> (freies Spiel) das faculdades, característico da experiência do belo, é sentido como prazer. O ânimo é o palco interno onde a experiência estética acontece.</div>
+        </div>
+        <div class="concept-card">
+          <div class="c-name">Juízo</div>
+          <div class="c-german">urteilskraft</div>
+          <div class="c-desc">A faculdade que pensa o particular sob o universal. No uso reflexionante (não determinante), opera sem conceito prévio: dado um particular, busca-se o universal que o pensa. O juízo estético é o caso paradigmático. Ao dizer "esta rosa é bela", não aplicamos um conceito; pretendemos, no entanto, <em>validade subjetiva universal</em>: que todos deveriam concordar, sem que se possa forçá-los por argumento.</div>
+        </div>
+        <div class="concept-card">
+          <div class="c-name">Sublime</div>
+          <div class="c-german">das erhabene</div>
+          <div class="c-desc">Variante mais complexa da experiência estética. Diante do absolutamente grande (sublime <em>matemático</em>) ou do absolutamente poderoso (sublime <em>dinâmico</em>), a imaginação falha em apreender ou em conter o objeto. Mas dessa falha emerge a consciência de uma faculdade superior em nós, a razão, que pensa o que a imaginação não pode apresentar. O prazer do sublime é misto: contém o doloroso reconhecimento dos limites sensíveis, e a elevação do sujeito enquanto ser supra-sensível.</div>
+        </div>
+      </div>
+      <p class="coda">A conexão entre os quatro conceitos é o que dá unidade à investigação. O sentimento de vida funda a experiência estética; o ânimo é o lugar onde ela se dá; o juízo reflexionante é o seu modo de operação; o belo e o sublime são as suas duas figuras maiores. No sublime, sobretudo, anuncia-se, no próprio coração da experiência estética, a vocação supra-sensível do sujeito: o ponto em que estética e moral se tocam.</p>
+    `
+  }
+];
+
+const stage = document.getElementById('stage');
+const panel = document.getElementById('panel');
+const panelContent = document.getElementById('panel-content');
+const panelTag = document.getElementById('panel-tag');
+const linesSvg = document.getElementById('lines');
+const nodes = document.querySelectorAll('.node');
+const prevBtn = document.getElementById('prev');
+const nextBtn = document.getElementById('next');
+const closeBtn = document.getElementById('close');
+const body = document.body;
+
+let currentStation = null;
+const visited = new Set();
+
+function drawLines() {
+  const positions = [];
+  nodes.forEach(n => {
+    positions.push({
+      x: parseFloat(n.style.left),
+      y: parseFloat(n.style.top)
+    });
+  });
+
+  let svg = '';
+  for (let i = 0; i < positions.length - 1; i++) {
+    const p1 = positions[i];
+    const p2 = positions[i + 1];
+    const cx = (p1.x + p2.x) / 2 + ((i % 2 === 0) ? 3 : -3);
+    const cy = (p1.y + p2.y) / 2 + ((i % 2 === 0) ? -3 : 3);
+    svg += `<path d="M ${p1.x} ${p1.y} Q ${cx} ${cy} ${p2.x} ${p2.y}" data-from="${i + 1}" data-to="${i + 2}"></path>`;
+  }
+  linesSvg.innerHTML = svg;
+}
+drawLines();
+
+function renderStation(id) {
+  const station = STATIONS.find(s => s.id === id);
+  if (!station) return;
+  panelTag.textContent = `estação ${String(id).padStart(2, '0')}`;
+  panelContent.innerHTML = `
+    <h2 class="panel-title">${station.title}</h2>
+    <p class="panel-subtitle">${station.subtitle}</p>
+    <div class="panel-body">${station.body}</div>
+  `;
+  panelContent.scrollTop = 0;
+  prevBtn.disabled = id <= 1;
+  nextBtn.disabled = id >= STATIONS.length;
+}
+
+function openStation(id) {
+  if (!STATIONS.find(s => s.id === id)) return;
+  const wasOpen = stage.classList.contains('panel-open');
+  const isSwitch = wasOpen && currentStation !== id;
+  currentStation = id;
+  visited.add(id);
+  body.classList.add('has-interacted');
+
+  // update node states
+  nodes.forEach(n => {
+    const nid = parseInt(n.dataset.id);
+    n.classList.toggle('active', nid === id);
+  });
+
+  // update line states
+  linesSvg.querySelectorAll('path').forEach(p => {
+    const from = parseInt(p.dataset.from);
+    const to = parseInt(p.dataset.to);
+    p.classList.toggle('active', from < id && to <= id);
+  });
+
+  if (isSwitch) {
+    // quick cross-fade when switching stations while panel already open
+    panelContent.style.opacity = '0';
+    setTimeout(() => {
+      renderStation(id);
+      panelContent.style.opacity = '1';
+    }, 180);
+  } else {
+    // first open: render immediately and let the slide-in transition do the visual work
+    renderStation(id);
+    panelContent.style.opacity = '1';
+  }
+
+  stage.classList.add('panel-open');
+  panel.setAttribute('aria-hidden', 'false');
+}
+
+function closePanel() {
+  stage.classList.remove('panel-open');
+  panel.setAttribute('aria-hidden', 'true');
+  currentStation = null;
+  nodes.forEach(n => n.classList.remove('active'));
+  linesSvg.querySelectorAll('path').forEach(p => p.classList.remove('active'));
+}
+
+nodes.forEach(node => {
+  node.addEventListener('click', () => openStation(parseInt(node.dataset.id)));
+});
+
+prevBtn.addEventListener('click', () => {
+  if (currentStation > 1) openStation(currentStation - 1);
+});
+nextBtn.addEventListener('click', () => {
+  if (currentStation < STATIONS.length) openStation(currentStation + 1);
+});
+closeBtn.addEventListener('click', closePanel);
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closePanel();
+  } else if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+    e.preventDefault();
+    if (currentStation === null) openStation(1);
+    else if (currentStation < STATIONS.length) openStation(currentStation + 1);
+  } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+    e.preventDefault();
+    if (currentStation > 1) openStation(currentStation - 1);
+  } else if (/^[1-5]$/.test(e.key)) {
+    openStation(parseInt(e.key));
+  }
+});
+
+// Resize debounce — redraw constellation lines
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(drawLines, 150);
+});
+</script>
+
+
+
+</body></html>
