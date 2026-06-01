@@ -124,9 +124,22 @@ body::after {
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), opacity 0.5s var(--ease);
   animation: rise 0.9s var(--ease) 0.35s backwards;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+/* hide chrome (QR, keyboard hints, footer mark) when a station panel is open,
+   so the text is unobstructed */
+.keyboard-hints,
+.footer-mark {
+  transition: opacity 0.5s var(--ease);
+}
+body:has(.stage.panel-open) .qr-trigger,
+body:has(.stage.panel-open) .keyboard-hints,
+body:has(.stage.panel-open) .footer-mark {
+  opacity: 0;
+  pointer-events: none;
 }
 .qr-trigger img {
   width: 100%;
